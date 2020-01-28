@@ -2,7 +2,7 @@
 require('./config/config');
 require('colors'); // instalar colors
 
-const hostname = '127.0.0.1';
+const hostname = '127.0.0.1'; // cambiar por la ipv4 de nuestra maquina para poder utilizar las apis desde otro dispositivo.
 const port = 3000;
 const express = require('express'); // instalar express
 const cors = require('cors'); // instalar cors
@@ -41,7 +41,7 @@ app.use((req, res, next) => {
     return res.status(404). send({
      resp: '404',
      err: true,
-     msg: `Page ${req.url} Not Found`, 
+     msg: `URL ${req.url} Not Found`, 
      cont: {}
     });
 });
