@@ -15,7 +15,7 @@ git pull origin HEAD // extrae los cambios de la rama principal
 
 git status // para ver los archivos modificados
 
-git add. // agregar todos los archivos
+git add . // agregar todos los archivos
 git add ./server // agregar solamente los archivos de la carpeta server
 
 git reset // para quitar los elementos que seleccionamos en el git add
