@@ -1,3 +1,4 @@
+/*jshint esversion: 8*/
 const mongoose = require('mongoose')
 const { Schema } = mongoose;
 
@@ -9,6 +10,6 @@ const userSchema = new Schema({
     nmbEdad: Number,
     strCorreo: String,
     strTelefono: String
-})
+});
 
-module.exports = mongoose.model('Usuario', userSchema)
+module.exports = mongoose.model('Usuario', userSchema);

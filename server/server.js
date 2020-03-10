@@ -1,3 +1,5 @@
+/*jshint esversion: 8*/
+
 //////////////////// Conexiones necesarias///////////////////
 require('./config/config');
 require('colors'); // instalar colors
@@ -24,28 +26,28 @@ app.use((req, res, next) => {
 app.use(bodyParser.json());
 ////////////////////////////////////////////////////////////
 
-app.use('/api', require('./routes/index')); 
+app.use('/api', require('./routes/index'));
 
 mongoose.connect(process.env.URLDB, {
-  useNewUrlParser: true,
-  useCreateIndex: true,
-  useUnifiedTopology: true,
-  useFindAndModify: false
-}). then((resp) => {
-  console.log('[SERVER]'.yellow, `Base de datos ONLINE en ${process.env.URLDB}`);
-}).catch((err) =>{
-  console.log('[SERVER]'.red, `Conexion fallida: ${err}`);
+    useNewUrlParser: true,
+    useCreateIndex: true,
+    useUnifiedTopology: true,
+    useFindAndModify: false
+}).then((resp) => {
+    console.log('[SERVER]'.green, `Base de datos ONLINE en ${process.env.URLDB}`);
+}).catch((err) => {
+    console.log('[SERVER]'.red, `Conexion fallida: ${err}`);
 });
 
 app.use((req, res, next) => {
-    return res.status(404). send({
-     resp: '404',
-     err: true,
-     msg: `URL ${req.url} Not Found`, 
-     cont: {}
+    return res.status(404).send({
+        resp: '404',
+        err: true,
+        msg: `URL ${req.url} Not Found`,
+        cont: {}
     });
 });
 
 server = app.listen(port, hostname, () => {
-  console.log('[SERVER]'.yellow,`running at http://${hostname}:${port}/`);
+    console.log('[SERVER]'.green, `running at http://${hostname}:${port}`);
 });

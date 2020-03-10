@@ -1,13 +1,14 @@
+/*jshint esversion: 8*/
 const Usuario = require('../../models/usuario.model');
 
 const express = require('express');
 const app = express();
 
 // http://localhost:3000/api/usuario/obtener
-app.get('/obtener', (req, res) =>{
-    Usuario.find().then((resp) =>{
+app.get('/obtener', (req, res) => {
+    Usuario.find().then((resp) => {
 
-        if(resp.length === 0){
+        if (resp.length === 0) {
             res.status(404).send({
                 estatus: '404',
                 err: true,
@@ -16,7 +17,7 @@ app.get('/obtener', (req, res) =>{
                     resp
                 }
             });
-        }else{
+        } else {
             res.status(200).send({
                 estatus: '200',
                 err: false,
@@ -26,7 +27,7 @@ app.get('/obtener', (req, res) =>{
                 }
             });
         }
-    }).catch((err) =>{
+    }).catch((err) => {
         res.status(500).send({
             estatus: '500',
             err: true,
@@ -35,14 +36,14 @@ app.get('/obtener', (req, res) =>{
                 err
             }
         });
-    })
+    });
 });
 
 // http://localhost:3000/api/usuario/obtener/a@a.com
 app.get('/obtener/:strCorreo', (req, res) => {
-    Usuario.find({'strCorreo': req.params.strCorreo}).then((resp) =>{
+    Usuario.find({ 'strCorreo': req.params.strCorreo }).then((resp) => {
 
-        if(resp.length === 0){
+        if (resp.length === 0) {
             res.status(404).send({
                 estatus: '404',
                 err: true,
@@ -51,7 +52,7 @@ app.get('/obtener/:strCorreo', (req, res) => {
                     resp
                 }
             });
-        }else{
+        } else {
             res.status(200).send({
                 estatus: '200',
                 err: false,
@@ -61,7 +62,7 @@ app.get('/obtener/:strCorreo', (req, res) => {
                 }
             });
         }
-    }).catch((err) =>{
+    }).catch((err) => {
         res.status(500).send({
             estatus: '500',
             err: true,
@@ -70,7 +71,7 @@ app.get('/obtener/:strCorreo', (req, res) => {
                 err
             }
         });
-    })
+    });
 });
 
 // http://localhost:3000/api/usuario/registrar
@@ -78,7 +79,7 @@ app.post('/registrar', (req, res) => {
     const user = new Usuario(req.body);
     user.save().then((resp) => {
 
-        if(resp.length === 0){
+        if (resp.length === 0) {
             res.status(400).send({
                 estatus: '400',
                 err: true,
@@ -87,7 +88,7 @@ app.post('/registrar', (req, res) => {
                     resp
                 }
             });
-        }else{
+        } else {
             res.status(200).send({
                 estatus: '200',
                 err: false,
