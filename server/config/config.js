@@ -8,9 +8,9 @@ process.env.NODE_ENV = process.env.NODE_ENV || 'dev';
 
 // Base de Datos
 if (process.env.NODE_ENV === 'dev') {
-    process.env.URLDB = "mongodb://localhost:27017/preparatoria_en_linea";
+    process.env.URLDB = "mongodb://localhost:27017/cafe";
 } else {
-    process.env.URLDB = "mongodb://localhost:27017/preparatoria_en_linea";
+    process.env.URLDB = "mongodb://localhost:27017/cafe";
 }
 
 // Declaración de array de middleweres a usar en las APIS
