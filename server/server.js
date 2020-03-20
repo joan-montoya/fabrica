@@ -5,7 +5,6 @@ require('./config/config');
 require('colors'); // instalar colors
 
 const hostname = '127.0.0.1'; // cambiar por la ipv4 de nuestra maquina para poder utilizar las apis desde otro dispositivo.
-const port = 3000;
 const express = require('express'); // instalar express
 const cors = require('cors'); // instalar cors
 const bodyParser = require('body-parser'); // instalar body-parser
@@ -48,6 +47,6 @@ app.use((req, res, next) => {
     });
 });
 
-server = app.listen(port, hostname, () => {
-    console.log('[SERVER]'.green, `running at http://${hostname}:${port}`);
+server = app.listen(process.env.PORT, hostname, () => {
+    console.log('[SERVER]'.green, `running at http://${hostname}:${process.env.port}`);
 });

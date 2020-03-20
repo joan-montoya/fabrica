@@ -1,5 +1,5 @@
 /*jshint esversion: 8*/
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
 const userSchema = new Schema({
@@ -7,8 +7,13 @@ const userSchema = new Schema({
         type: String,
         required: true
     },
-    nmbEdad: Number,
-    strCorreo: String,
+    nmbEdad: {
+        type: Number
+    },
+    strCorreo: {
+        type: String,
+        required: true
+    },
     strTelefono: String
 });
 
