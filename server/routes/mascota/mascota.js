@@ -1,18 +1,18 @@
 /*jshint esversion: 8*/
-const Usuario = require('../../models/usuario.model');
+const Mascota = require('../../models/mascota.model');
 
 const express = require('express');
 const app = express();
 
-// http://localhost:3000/api/usuario/obtener
+// http://localhost:3000/api/mascota/obtener
 app.get('/obtener', (req, res) => {
-    Usuario.find().populate({ path: 'idMascota', select: { 'strNombre': 1, '_id': 0 } }).then((resp) => {
+    Mascota.find().then((resp) => {
 
         if (resp.length === 0) {
             res.status(404).send({
                 estatus: '404',
                 err: true,
-                msg: 'No se encontraron usuarios en la base de datos.',
+                msg: 'No se encontraron mascotas en la base de datos.',
                 cont: {
                     resp
                 }
@@ -39,64 +39,30 @@ app.get('/obtener', (req, res) => {
     });
 });
 
-// http://localhost:3000/api/usuario/obtener/a@a.com
-app.get('/obtener/:strCorreo', (req, res) => {
-    Usuario.find({ 'strCorreo': req.params.strCorreo }).then((resp) => {
-
-        if (resp.length === 0) {
-            res.status(404).send({
-                estatus: '404',
-                err: true,
-                msg: 'No se encontro el usuario en la base de datos.',
-                cont: {
-                    resp
-                }
-            });
-        } else {
-            res.status(200).send({
-                estatus: '200',
-                err: false,
-                msg: 'Informacion obtenida correctamente.',
-                cont: {
-                    resp
-                }
-            });
-        }
-    }).catch((err) => {
-        res.status(500).send({
-            estatus: '500',
-            err: true,
-            msg: 'Error al obtener a los usuarios.',
-            cont: {
-                err
-            }
-        });
-    });
-});
-
-// http://localhost:3000/api/usuario/registrar
+// http://localhost:3000/api/mascota/registrar
 app.post('/registrar', (req, res) => {
-    const user = new Usuario(req.body);
+    const mascota = new Mascota(req.body);
 
-    let err = user.validateSync();
+    let err = mascota.validateSync();
 
     if (err) {
         return res.status(400).json({
             ok: false,
             resp: 400,
-            msg: 'Error: Error al Insertar el usuario.',
+            msg: 'Error: Error al Insertar la mascota.',
             cont: {
                 err
             }
         });
     }
 
-    user.save().then((resp) => {
+
+    mascota.save().then((resp) => {
         if (resp.length === 0) {
             res.status(400).send({
                 estatus: '400',
                 err: true,
-                msg: 'No se pudo registrar el usuario en la base de datos.',
+                msg: 'Error: No se pudo registrar el usuario en la base de datos.',
                 cont: {
                     resp
                 }
@@ -105,7 +71,7 @@ app.post('/registrar', (req, res) => {
             res.status(200).send({
                 estatus: '200',
                 err: false,
-                msg: 'Informacion insertada correctamente.',
+                msg: 'Success: Informacion insertada correctamente.',
                 cont: {
                     resp
                 }
@@ -115,7 +81,7 @@ app.post('/registrar', (req, res) => {
         res.status(500).send({
             estatus: '500',
             err: true,
-            msg: 'Error al registrar al usuario.',
+            msg: 'Error: Error al registrar la mascota.',
             cont: {
                 err
             }
