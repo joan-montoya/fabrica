@@ -11,6 +11,8 @@ const bodyParser = require('body-parser'); // instalar body-parser
 const mongoose = require('mongoose'); // instalar mongoose
 const app = express();
 
+const opcionesGet = require('./middlewares/opcionesGet');
+
 // Habilitar Cors
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -24,7 +26,7 @@ app.use((req, res, next) => {
 
 app.use(bodyParser.json());
 ////////////////////////////////////////////////////////////
-
+app.use(opcionesGet);
 app.use('/api', require('./routes/index'));
 
 mongoose.connect(process.env.URLDB, {

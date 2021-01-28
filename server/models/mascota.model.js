@@ -11,7 +11,17 @@ const mascotaSchema = new Schema({
         type: String,
         required: [true, 'Favor de insertar que tipo de animal es.']
     },
-    intEdad: Number
-}, { collection: "mascota" });
+    intEdad: Number,
+    blnActivo: {
+        type: Boolean,
+        default: true
+    }
+}, {
+    timestamps: {
+        createdAt: 'created_at',
+        updatedAt: 'updated_at'
+    },
+    collection: "mascota"
+});
 
 module.exports = mongoose.model('Mascota', mascotaSchema);

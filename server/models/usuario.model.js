@@ -1,7 +1,6 @@
 /*jshint esversion: 8*/
 const mongoose = require('mongoose');
 const { Schema } = mongoose;
-//const Mascota = require('./mascota.model');
 
 const userSchema = new Schema({
     strNombre: {
@@ -20,10 +19,17 @@ const userSchema = new Schema({
     idMascota: {
         type: Schema.Types.ObjectId,
         ref: 'Mascota',
+    },
+    blnActivo: {
+        type: Boolean,
+        default: true
     }
-    /* 
-    aJsnMascota: [Mascota.schema]
-    */
-}, { collection: "usuario" });
+}, {
+    timestamps: {
+        createdAt: 'created_at',
+        updatedAt: 'updated_at'
+    },
+    collection: "usuario"
+});
 
 module.exports = mongoose.model('Usuario', userSchema);
