@@ -11,7 +11,8 @@ const mascotaSchema = new Schema({
         type: String,
         required: [true, 'Favor de insertar que tipo de animal es.']
     },
-    intEdad: Number,
+    nmbEdad: Number,
+    strSexo: String,
     blnActivo: {
         type: Boolean,
         default: true

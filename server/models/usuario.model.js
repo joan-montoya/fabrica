@@ -7,6 +7,10 @@ const userSchema = new Schema({
         type: String,
         required: [true, 'Favor de insertar el nombre.']
     },
+    strApellidos: {
+        type: String,
+        required: [true, 'Favor de insertar sus apellidos.']
+    },
     nmbEdad: {
         type: Number,
         required: [true, 'Favor de insertar su edad.']
@@ -15,11 +19,12 @@ const userSchema = new Schema({
         type: String,
         required: [true, 'Favor de insertar su correo.']
     },
+    strDireccion: String,
     strTelefono: String,
-    idMascota: {
-        type: Schema.Types.ObjectId,
-        ref: 'Mascota',
-    },
+    arrMascotas: [{
+        type: mongoose.Types.ObjectId,
+        ref: 'mascota'
+    }],
     blnActivo: {
         type: Boolean,
         default: true
